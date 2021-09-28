@@ -1,0 +1,7 @@
+name:
+   googleSearch.searchTextBox: "q"
+   googleSearch.searchTextBox2: "q2"
+xpath:
+   googleSearch.searchTextBoxt: "q1"
+   googleSearch.searchTextBoxt3: "q3"
+path: "test"
