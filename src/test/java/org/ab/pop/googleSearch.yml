@@ -1,7 +1,5 @@
-name:
-   googleSearch.searchTextBox: "q"
-   googleSearch.searchTextBox2: "q2"
+id:
+   LoginPage.username: "UserName"
 xpath:
-   googleSearch.searchTextBoxt: "q1"
-   googleSearch.searchTextBoxt3: "q3"
-path: "test"
+   LoginPage.password: "//button[@value='login']"
+   LoginPage.nextBtn: "//button[@value='login' and text()='Next']"

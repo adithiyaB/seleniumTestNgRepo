@@ -18,12 +18,13 @@ public class YamlReader {
 	private static String parentKey;
 	private static By locator;
 
-	public static void getPageObjects() {
+	public static Map<String, By> getPageObjects() {
 		File file = new File("src/test/java/org/ab/pop");
 		String files[] = file.list();
-		for (int i = 0; i < files.length; i++) {
+		for (int i = 0; i < files.length - 1; i++) {
 			yamlParse("src/test/java/org/ab/pop" + "/" + files[i]);
 		}
+		return allPageObjects;
 	}
 
 	public static void yamlParse(String filepath) {
@@ -31,28 +32,20 @@ public class YamlReader {
 			Yaml yaml = new Yaml();
 			InputStream fis = new FileInputStream(new File(filepath));
 			data = yaml.load(fis);
-			System.out.println("###################################################");
 			Set<String> keys = data.keySet();
-			System.out.println("keys-----------------------" + keys);
 			for (String key : keys) {
-				System.out.println(data.get(key).getClass().getSimpleName());
 				if (data.get(key).getClass().getSimpleName() != "String") {
-					System.out.println("within if");
 					parentKey = key;
 					@SuppressWarnings("unchecked")
 					Map<String, Object> tmpData = (Map<String, Object>) data.get(key);
-					System.out.println(tmpData);
 					Set<String> subKeys = tmpData.keySet();
 					for (String subKey : subKeys) {
-						System.out.println("#######"+parentKey+"##############"+subKey+"##############"+tmpData.get(subKey)+"################");
-//						getLocator(parentKey, subKey, data.get(subKey));
-						locator = By.xpath(data.get(key).toString());
+						getLocator(parentKey, subKey, tmpData.get(subKey));
+//						locator = By.xpath(data.get(key).toString());
 					}
 				} else {
-					System.out.println("within else");
-					System.out.println("#######"+parentKey+"##############"+key+"##############"+data.get(key)+"################");
-//					getLocator(parentKey, key, data.get(key));
-					locator = By.xpath(data.get(key).toString());
+					getLocator(parentKey, key, data.get(key));
+//					locator = By.xpath(data.get(key).toString());
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -60,17 +53,7 @@ public class YamlReader {
 		}
 	}
 
-//	public static void getAllChildKeyValues(Set<String> keys) {
-//
-////		Set<String> keys = data.keySet();
-//		System.out.println("keys-----------------------" + keys);
-//		for (String key : keys) {
-//				getLocator(parentKey, key, data.get(key));
-//		}
-//	}
-
 	public static void getLocator(String parentKey, String key, Object objLocator) {
-
 		switch (parentKey) {
 		case "xpath":
 			locator = By.xpath(objLocator.toString());
@@ -98,7 +81,7 @@ public class YamlReader {
 			break;
 		}
 		allPageObjects.put(key, locator);
-		System.out.println(allPageObjects);
+		
 	}
 
 	public static void main(String[] args) {
