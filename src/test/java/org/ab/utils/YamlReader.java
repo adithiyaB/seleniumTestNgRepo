@@ -21,7 +21,7 @@ public class YamlReader {
 	public static Map<String, By> getPageObjects() {
 		File file = new File("src/test/java/org/ab/pop");
 		String files[] = file.list();
-		for (int i = 0; i < files.length - 1; i++) {
+		for (int i = 0; i < files.length; i++) {
 			yamlParse("src/test/java/org/ab/pop" + "/" + files[i]);
 		}
 		return allPageObjects;

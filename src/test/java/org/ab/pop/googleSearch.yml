@@ -1,5 +1,0 @@
-id:
-   LoginPage.username: "UserName"
-xpath:
-   LoginPage.password: "//button[@value='login']"
-   LoginPage.nextBtn: "//button[@value='login' and text()='Next']"

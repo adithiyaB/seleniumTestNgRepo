@@ -1,0 +1,6 @@
+xpath:
+   FaxInbox.MyPersonalFolderMenu: "//span[text()='My Personal Folder' and contains(@id,'My Personal Folder')]"
+   FaxInbox.createSubFolder: "//button[normalize-space(text()) = 'Create a subfolder']"
+   FaxInbox.createBtn: "//button[normalize-space(text()) = 'Create']"
+id:
+   FaxInbox.subFolderNameTxt: "newFolderTxt"

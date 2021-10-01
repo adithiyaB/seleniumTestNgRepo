@@ -16,7 +16,7 @@ import org.testng.annotations.DataProvider;
 public final class DataProviderUtil {
 	private static List<Map<String, String>> executionData = new ArrayList<Map<String, String>>();
 
-	@DataProvider(name = "executor", parallel=true)
+	@DataProvider(name = "executor", parallel = true)
 	public static Object[] getTestcaseExecutionData(Method m) {
 		List<Map<String, String>> testcaseDataProvider = new ArrayList<Map<String, String>>();
 		if (executionData.isEmpty()) {
@@ -25,7 +25,6 @@ public final class DataProviderUtil {
 		for (int i = 0; i < executionData.size(); i++) {
 			if (executionData.get(i).get("TC_ID").equalsIgnoreCase(m.getName())) {
 				testcaseDataProvider.add(executionData.get(i));
-//				executionData.remove(i);
 			}
 		}
 		return testcaseDataProvider.toArray();

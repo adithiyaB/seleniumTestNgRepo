@@ -1,0 +1,5 @@
+id:
+   LoginPage.username1: "UserName"
+xpath:
+   LoginPage.password1: "//button[@value='login']"
+   LoginPage.nextBtn1: "//button[@value='login' and text()='Next']"

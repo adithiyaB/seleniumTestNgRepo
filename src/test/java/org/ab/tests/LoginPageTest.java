@@ -16,17 +16,15 @@ public final class LoginPageTest extends Hooks {
 	WebDriverWait wait;
 	Map<String, String> pageObjects = new HashMap<String, String>();
 
-//	@Test(dataProvider = "executor", dataProviderClass = DataProviderUtil.class)
-//	public void TCF_6(Map<String, String> data) {
-//		System.out.println("within test6");
-//		DriverManager.getDriver().findElement(By.name("q")).sendKeys(data.get("Subject"),Keys.ENTER);
-//	}
-//
-//	@Test(dataProvider = "executor", dataProviderClass = DataProviderUtil.class)
-//	public void TCF_7(Map<String, String> data) {
-//		System.out.println("within test7");
-//		DriverManager.getDriver().findElement(By.name("q1")).sendKeys(data.get("Subject"),Keys.ENTER);
-//	}
+	@Test(dataProvider = "executor", dataProviderClass = DataProviderUtil.class)
+	public void TCF_6(Map<String, String> data) {
+		ExtentLogger.info("Infor of tc6");
+	}
+
+	@Test(dataProvider = "executor", dataProviderClass = DataProviderUtil.class)
+	public void TCF_7(Map<String, String> data) {
+		ExtentLogger.info("Infor of tc7");
+	}
 
 	@Test(dataProvider = "executor", dataProviderClass = DataProviderUtil.class)
 	public void TCF_1(Map<String, String> data) {
@@ -37,7 +35,10 @@ public final class LoginPageTest extends Hooks {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		SeleniumUtils.sendKeys("LoginPage.username", data.get("UserName"));
-		SeleniumUtils.click("LoginPage.nextBtn");
+		SeleniumUtils.waitUntilPageLoad();
+		SeleniumUtils.contextClick("FaxInbox.MyPersonalFolderMenu");
+		SeleniumUtils.click("FaxInbox.createSubFolder");
+		SeleniumUtils.sendKeys("FaxInbox.subFolderNameTxt","automationTest");
+		SeleniumUtils.click("FaxInbox.createBtn");
 	}
 }
